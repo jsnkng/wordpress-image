@@ -1,0 +1,20 @@
+stages:
+  - build
+
+variables:
+  REGISTRY: 'registry.cab408.com'
+  HOSTNAME: 'cab408.com'
+  GROUP: 'cab408'
+  REPO_NAME: 'wordpress-image'
+  VIRTUAL_HOST: $REPO_NAME--$CI_BUILD_REF_NAME.$ENV.$HOSTNAME
+
+build-master: 
+  stage: build
+  script:
+    - docker build -t $REGISTRY/$GROUP/$REPO_NAME:$CI_BUILD_REF_NAME -f Dockerfile . 
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $REGISTRY
+    - docker push $REGISTRY/$GROUP/$REPO_NAME:$CI_BUILD_REF_NAME
+  tags:
+    - build
+    - docker
+    - shell
