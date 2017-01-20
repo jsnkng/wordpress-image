@@ -13,7 +13,7 @@ RUN apk add --no-cache libtool build-base autoconf \
     && apk del libtool build-base autoconf
 
 ENV WP_ROOT /usr/src/wordpress
-ENV WP_VERSION 4.7.1
+ENV WP_VERSION 4.5.2
 ENV WP_SHA1 8e56ba56c10a3f245c616b13e46bd996f63793d6
 ENV WP_DOWNLOAD_URL https://wordpress.org/wordpress-$WP_VERSION.tar.gz
 
@@ -21,8 +21,6 @@ RUN curl -o wordpress.tar.gz -SL $WP_DOWNLOAD_URL \
     && echo "$WP_SHA1 *wordpress.tar.gz" | sha1sum -c - \
     && tar -xzf wordpress.tar.gz -C $(dirname $WP_ROOT) \
     && rm wordpress.tar.gz
-
-#COPY .htaccess $WP_ROOT
 
 RUN adduser -D deployer -s /bin/bash -G www-data
 
