@@ -24,8 +24,7 @@ RUN curl -o wordpress.tar.gz -SL $WP_DOWNLOAD_URL \
 
 RUN adduser -D deployer -s /bin/bash -G www-data
 
-VOLUME /var/www/wp-content
-WORKDIR /var/www/wp-content
+WORKDIR /var/www
 
 COPY wp-config.php $WP_ROOT
 RUN chown -R deployer:www-data $WP_ROOT \
