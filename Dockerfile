@@ -14,7 +14,10 @@ RUN apk add --no-cache libtool build-base autoconf \
 
 ENV WP_ROOT /usr/src/wordpress
 ENV WP_VERSION 4.5.2
-ENV WP_SHA1 8e56ba56c10a3f245c616b13e46bd996f63793d6
+ENV WP_SHA1 bab94003a5d2285f6ae76407e7b1bbb75382c36e
+#ENV WP_SHA1 8e56ba56c10a3f245c616b13e46bd996f63793d6
+
+
 ENV WP_DOWNLOAD_URL https://wordpress.org/wordpress-$WP_VERSION.tar.gz
 
 RUN curl -o wordpress.tar.gz -SL $WP_DOWNLOAD_URL \
