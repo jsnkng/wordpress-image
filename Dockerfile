@@ -28,6 +28,7 @@ WORKDIR /var/www
 
 COPY wp-config.php $WP_ROOT
 RUN chown -R deployer:www-data $WP_ROOT \
+    && chown -R deployer:www-data /var/www \
     && chmod 640 $WP_ROOT/wp-config.php
 
 COPY cron.conf /etc/crontabs/deployer
