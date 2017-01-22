@@ -1,37 +1,26 @@
-version: '2'
-services:
-  wordpress:
-    build: .
-    volumes:
-      - ./wp-content:/var/www/wp-content
-    env_file: .env
-    environment:
-      - VIRTUAL_HOST=$VIRTUAL_HOST
-    ports:
-      - "80"
-    links:
-      - mysql
-      - redis
-  cron:
-    build: .
-    command: crond -f -l 6 -L /dev/stdout
-    volumes:
-      - ./wp-content:/var/www/wp-content
-    env_file: .env
-    links:
-      - mysql
-      - redis
-  mysql:
-    image: mariadb:5.5
-    volumes:
-      - ./mysql:/var/lib
-    environment:
-      MYSQL_ROOT_PASSWORD: wp
-      MYSQL_DATABASE: wp
-      MYSQL_USER: wp
-      MYSQL_PASSWORD: wp
-  redis:
-    image: redis:3.2.0-alpine
-    command: redis-server --appendonly yes
-    volumes:
-      - ./redis:/data
+mysql:
+  image: mariadb:5.5
+  volumes:
+    - ./mysql:/var/lib
+  environment:
+    MYSQL_ROOT_PASSWORD: wp
+    MYSQL_DATABASE: wp
+    MYSQL_USER: wp
+    MYSQL_PASSWORD: wp
+
+cron:
+  build: .  
+  command: crond -f -l 6 -L /dev/stdout
+  volumes:
+    - ./wp-content:/var/www/wp-content
+  links:
+    - mysql
+
+wordpress:
+  build: .  
+  volumes:
+    - ./wp-content:/var/www/wp-content
+  ports:
+    - 8080:80
+  links:
+    - mysql

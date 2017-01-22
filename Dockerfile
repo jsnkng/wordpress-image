@@ -1,5 +1,5 @@
 FROM php:7.0.6-fpm-alpine
-MAINTAINER Tomaz Zaman <tomaz@codeable.io>
+MAINTAINER Jason King <jking@cab408.com>
 
 RUN apk add --no-cache nginx mysql-client supervisor curl \
     bash redis imagemagick-dev
