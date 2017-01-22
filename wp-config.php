@@ -1,4 +1,13 @@
 <?php
+/**
+ * Handle SSL reverse proxy
+ */
+if ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
+    $_SERVER['HTTPS']='on';
+
+if (isset($_SERVER['HTTP_X_FORWARDED_HOST'])) {
+    $_SERVER['HTTP_HOST'] = $_SERVER['HTTP_X_FORWARDED_HOST'];
+}
 
 define('WP_CONTENT_DIR', '/var/www/wp-content');
 
@@ -16,12 +25,3 @@ if (!defined('ABSPATH'))
 
 require_once(ABSPATH . 'wp-settings.php');
 
-/**
- * Handle SSL reverse proxy
- */
-if ($_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
-    $_SERVER['HTTPS']='on';
-
-if (isset($_SERVER['HTTP_X_FORWARDED_HOST'])) {
-    $_SERVER['HTTP_HOST'] = $_SERVER['HTTP_X_FORWARDED_HOST'];
-}
