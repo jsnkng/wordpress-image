@@ -2,12 +2,12 @@ FROM php:7.1-fpm-alpine
 MAINTAINER Jason King <jking@cab408.com>
 
 RUN apk add --no-cache nginx mysql-client supervisor curl \
-    bash redis imagemagick-dev zlib-dev
+    bash redis libpng-dev imagemagick-dev zlib-dev 
 
 RUN apk add --no-cache libtool build-base autoconf \
     && docker-php-ext-install \
       -j$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) \
-      iconv gd mbstring fileinfo curl xmlreader xmlwriter spl ftp mysqli opcache  \
+      iconv gd mbstring fileinfo curl xmlreader xmlwriter spl ftp mysqli opcache zip \
     && pecl install imagick \
     && docker-php-ext-enable imagick \
     && apk del libtool build-base autoconf
