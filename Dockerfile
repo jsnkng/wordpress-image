@@ -3,11 +3,11 @@ MAINTAINER Jason King <jking@cab408.com>
 
 RUN apk add --no-cache nginx mysql-client supervisor curl \
     bash redis imagemagick-dev  
-RUN apk --update add php7-zip && rm -rf /var/cache/apk/*
+
 RUN apk add --no-cache libtool build-base autoconf \
     && docker-php-ext-install \
       -j$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) \
-      iconv gd mbstring fileinfo curl xmlreader xmlwriter spl ftp mysqli opcache \
+      iconv gd mbstring fileinfo curl xmlreader xmlwriter spl ftp mysqli opcache php7-zip \
     && pecl install imagick \
     && docker-php-ext-enable imagick \
     && apk del libtool build-base autoconf
