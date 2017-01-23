@@ -2,8 +2,8 @@ FROM php:7.0.6-fpm-alpine
 MAINTAINER Jason King <jking@cab408.com>
 
 RUN apk add --no-cache nginx mysql-client supervisor curl \
-    bash redis imagemagick-dev php7-zip 
-
+    bash redis imagemagick-dev  
+RUN apk --update add php7-zip && rm -rf /var/cache/apk/*
 RUN apk add --no-cache libtool build-base autoconf \
     && docker-php-ext-install \
       -j$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) \
