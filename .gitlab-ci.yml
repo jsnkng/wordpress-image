@@ -3,10 +3,9 @@ stages:
 
 variables:
   REGISTRY: 'registry.cab408.com'
-  HOSTNAME: 'cab408.com'
   GROUP: 'cab408'
   REPO_NAME: 'wordpress-image'
-  VIRTUAL_HOST: $REPO_NAME--$CI_BUILD_REF_NAME.$ENV.$HOSTNAME
+
 
 build-master: 
   stage: build
