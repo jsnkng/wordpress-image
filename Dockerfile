@@ -1,4 +1,4 @@
-FROM php:7.0.6-fpm-alpine
+FROM php:7.1-fpm-alpine
 MAINTAINER Jason King <jking@cab408.com>
 
 RUN apk add --no-cache nginx mysql-client supervisor curl \
