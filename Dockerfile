@@ -7,7 +7,7 @@ RUN apk add --no-cache nginx mysql-client supervisor curl \
 RUN apk add --no-cache libtool build-base autoconf \
     && docker-php-ext-install \
       -j$(grep -c ^processor /proc/cpuinfo 2>/dev/null || 1) \
-      iconv gd mbstring fileinfo curl xmlreader xmlwriter spl ftp mysqli opcache zip \
+      iconv gd mbstring fileinfo curl xmlreader xmlwriter spl ftp mysqli opcache  \
     && pecl install imagick \
     && docker-php-ext-enable imagick \
     && apk del libtool build-base autoconf
