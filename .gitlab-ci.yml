@@ -7,7 +7,7 @@ variables:
   REPO_NAME: 'wordpress-image'
 
 
-build-master: 
+build: 
   stage: build
   script:
     - docker build -t $REGISTRY/$GROUP/$REPO_NAME:$CI_BUILD_REF_NAME -f Dockerfile . 
